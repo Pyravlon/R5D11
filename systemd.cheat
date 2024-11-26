@@ -1,36 +1,84 @@
-# systemd.cheat
-# Fiche de référence pour les commandes systemd
+% Linux - systemd
 
-cheat:
-    - name: "Démarrer un service"
-        command: "sudo systemctl start <nom_du_service>"
+# Installation de la completion automatique
+sudo apt install bash-completion
 
-    - name: "Arrêter un service"
-        command: "sudo systemctl stop <nom_du_service>"
+# Recharger la configuration de systemd
+sudo systemctl daemon-reload
 
-    - name: "Redémarrer un service"
-        command: "sudo systemctl restart <nom_du_service>"
+# Afficher les logs d'un service
+journalctl -u <service>
 
-    - name: "Activer un service au démarrage"
-        command: "sudo systemctl enable <nom_du_service>"
+# Afficher les logs d'un service en temps réel
+journalctl -fu <service>
 
-    - name: "Désactiver un service au démarrage"
-        command: "sudo systemctl disable <nom_du_service>"
+# Démarrer un service
+sudo systemctl start <service>
 
-    - name: "Vérifier le statut d'un service"
-        command: "sudo systemctl status <nom_du_service>"
+# Arrêter un service
+sudo systemctl stop <service>
 
-    - name: "Recharger la configuration du gestionnaire systemd"
-        command: "sudo systemctl daemon-reload"
+# Redémarrer un service
+sudo systemctl restart <service>
 
-    - name: "Afficher tous les services actifs"
-        command: "systemctl list-units --type=service --state=active"
+# Activer un service au démarrage
+sudo systemctl enable <service>
 
-    - name: "Afficher tous les services en échec"
-        command: "systemctl --failed"
+# Désactiver un service au démarrage
+sudo systemctl disable <service>
 
-    - name: "Voir les journaux système"
-        command: "journalctl -xe"
+# Vérifier le statut d'un service
+sudo systemctl status <service>
 
-    - name: "Voir les journaux pour un service spécifique"
-        command: "journalctl -u <nom_du_service>"
+# Lister toutes les services
+systemctl list-units
+
+# Lister toutes les services installées
+systemctl list-unit-files
+
+# Liste les services avec un type spécifique
+systemctl list-units --type=<type>
+
+# Lister les dépendances d'un service
+systemctl list-dependencies <service>
+
+# Afficher la configuration d'un service
+systemctl cat <service>
+
+# Lister les propriétés d'un service
+systemctl show <service>
+
+# Masquer un service (empêche le démarrage du service et le masque des dépendances)
+sudo systemctl mask <service>
+
+# Démasquer un service
+sudo systemctl unmask <service>
+
+# Afficher les informations de date et heure
+timedatectl
+
+# Configurer la date et l'heure
+sudo timedatectl set-time 'YYYY-MM-DD HH:MM:SS'
+
+# Configurer le fuseau horaire
+sudo timedatectl set-timezone <timezone>
+
+# Afficher les informations du système
+hostnamectl
+
+# Changer le nom d'hôte
+sudo hostnamectl set-hostname <new-hostname>
+
+# Afficher les sessions utilisateur
+loginctl list-sessions
+
+# Afficher les utilisateurs connectés
+loginctl list-users
+
+# Terminer une session utilisateur
+sudo loginctl terminate-session <session-id>
+
+# Lister tout les utilitaires ctl disponibles
+systemctl list-unit-files | grep enabled
+
+$ name: whoami
