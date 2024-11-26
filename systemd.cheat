@@ -1,0 +1,36 @@
+# systemd.cheat
+# Fiche de référence pour les commandes systemd
+
+cheat:
+    - name: "Démarrer un service"
+        command: "sudo systemctl start <nom_du_service>"
+
+    - name: "Arrêter un service"
+        command: "sudo systemctl stop <nom_du_service>"
+
+    - name: "Redémarrer un service"
+        command: "sudo systemctl restart <nom_du_service>"
+
+    - name: "Activer un service au démarrage"
+        command: "sudo systemctl enable <nom_du_service>"
+
+    - name: "Désactiver un service au démarrage"
+        command: "sudo systemctl disable <nom_du_service>"
+
+    - name: "Vérifier le statut d'un service"
+        command: "sudo systemctl status <nom_du_service>"
+
+    - name: "Recharger la configuration du gestionnaire systemd"
+        command: "sudo systemctl daemon-reload"
+
+    - name: "Afficher tous les services actifs"
+        command: "systemctl list-units --type=service --state=active"
+
+    - name: "Afficher tous les services en échec"
+        command: "systemctl --failed"
+
+    - name: "Voir les journaux système"
+        command: "journalctl -xe"
+
+    - name: "Voir les journaux pour un service spécifique"
+        command: "journalctl -u <nom_du_service>"
